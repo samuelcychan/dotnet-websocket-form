@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BinanceMonitor/BinanceMonitor.csproj" />
+    <Project Path="src/BinanceStream/BinanceStream.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BinanceStream.Tests/BinanceStream.Tests.csproj" />
+  </Folder>
+</Solution>
