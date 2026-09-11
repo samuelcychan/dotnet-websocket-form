@@ -10,6 +10,8 @@ public sealed class MainForm : Form
     private readonly Button connect = new() { Text = "Connect", AutoSize = true };
     private readonly Button stop = new() { Text = "Disconnect", AutoSize = true, Enabled = false };
     private readonly Button replay = new() { Text = "Replay sample", AutoSize = true };
+    private readonly ComboBox chartSymbol = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 160, AccessibleName = "Chart symbol" };
+    private readonly MarketChart chart = new() { Dock = DockStyle.Fill };
     private readonly Label status = new() { Text = "Ready · Public market data · No API key required", Dock = DockStyle.Fill, AutoSize = true };
     private readonly Label quote = new() { Text = "Waiting for market data", Dock = DockStyle.Fill, AutoSize = true, Font = new Font("Segoe UI", 16) };
     private readonly DataGridView grid = new() { Dock = DockStyle.Fill, ReadOnly = true, AllowUserToAddRows = false,
@@ -27,17 +29,19 @@ public sealed class MainForm : Form
     public MainForm()
     {
         Text = "Binance Stream · Market Monitor";
-        Size = new Size(1100, 700);
-        MinimumSize = new Size(900, 500);
+        Size = new Size(1100, 850);
+        MinimumSize = new Size(1000, 720);
         Font = new Font("Segoe UI", 10);
         BackColor = Color.FromArgb(16, 22, 32);
         ForeColor = Color.Gainsboro;
         kind.DataSource = Enum.GetValues<StreamKind>();
-        var layout = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(24), RowCount = 5, ColumnCount = 1 };
+        var layout = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(24), RowCount = 7, ColumnCount = 1 };
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60));
-        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 36));
+        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 55));
+        layout.RowStyles.Add(new RowStyle(SizeType.Percent, 45));
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
         layout.Controls.Add(new Label { Text = "MARKET / LIVE STREAM", Font = new Font("Segoe UI", 22, FontStyle.Bold), AutoSize = true }, 0, 0);
         var controls = new FlowLayoutPanel { Dock = DockStyle.Fill };
@@ -45,8 +49,13 @@ public sealed class MainForm : Form
         foreach (var button in new[] { connect, stop, replay }) { button.BackColor = Color.FromArgb(240, 185, 11); button.ForeColor = Color.Black; button.FlatStyle = FlatStyle.Flat; }
         layout.Controls.Add(controls, 0, 1);
         layout.Controls.Add(quote, 0, 2);
-        layout.Controls.Add(grid, 0, 3);
-        layout.Controls.Add(status, 0, 4);
+        var chartControls = new FlowLayoutPanel { Dock = DockStyle.Fill };
+        chartControls.Controls.Add(new Label { Text = "Chart symbol", AutoSize = true, Margin = new Padding(0, 5, 12, 0) });
+        chartControls.Controls.Add(chartSymbol);
+        layout.Controls.Add(chartControls, 0, 3);
+        layout.Controls.Add(chart, 0, 4);
+        layout.Controls.Add(grid, 0, 5);
+        layout.Controls.Add(status, 0, 6);
         Controls.Add(layout);
         foreach (var name in new[] { "Time / update", "Symbol", "Type", "Price / bid", "Quantity", "Ask / taker" }) grid.Columns.Add(name, name);
         grid.DefaultCellStyle.BackColor = Color.FromArgb(24, 31, 43);
@@ -58,6 +67,7 @@ public sealed class MainForm : Form
         connect.Click += async (_, _) => await StartAsync(false);
         replay.Click += async (_, _) => await StartAsync(true);
         stop.Click += (_, _) => session?.Cancel();
+        chartSymbol.SelectedIndexChanged += (_, _) => chart.SelectedSymbol = chartSymbol.SelectedItem as string;
         timer.Tick += (_, _) => RenderPending();
         timer.Start();
         FormClosing += OnClosing;
@@ -78,6 +88,8 @@ public sealed class MainForm : Form
         connect.Enabled = replay.Enabled = symbols.Enabled = kind.Enabled = false;
         stop.Enabled = true;
         grid.Rows.Clear();
+        chart.Clear();
+        chartSymbol.Items.Clear();
         pending.Clear();
         received = dropped = 0;
         quote.Text = "Waiting for market data";
@@ -118,6 +130,11 @@ public sealed class MainForm : Form
     {
         for (var i = 0; i < 100 && pending.TryDequeue(out var item); i++)
         {
+            if (chart.Add(item))
+            {
+                chartSymbol.Items.Add(item.Symbol);
+                if (chartSymbol.SelectedIndex < 0) chartSymbol.SelectedIndex = 0;
+            }
             switch (item)
             {
                 case Trade t:

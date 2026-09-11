@@ -1,0 +1,509 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "5969adb7e14233a6fcd9aa5bab5b3a0bd4cfe62c",
+  "generatedAt": "2026-09-10T23:20:59.410Z",
+  "files": {
+    ".ua/config.json": {
+      "filePath": ".ua/config.json",
+      "contentHash": "3b7261a81d69f50685b9bb8b0690d0fcbde445a71e36781cc0cdce7167c0a8a7",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2,
+      "hasStructuralAnalysis": false
+    },
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "70fbb66cd62c8f11c85c6c6e3650c03d9c69f09e94a41fa3c1cdb65e41df8eee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 39,
+      "hasStructuralAnalysis": false
+    },
+    "BinanceStream.slnx": {
+      "filePath": "BinanceStream.slnx",
+      "contentHash": "64edf6d96d89379532c82516af92af58af70ac4e8251f48febdcbc873b536f58",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 10,
+      "hasStructuralAnalysis": false
+    },
+    "Directory.Build.props": {
+      "filePath": "Directory.Build.props",
+      "contentHash": "85db9bd89fae4a407a15e85346d792bf38e464e56d23ac26a86343cb9b33675d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": false
+    },
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "7e230c4d3db09bdfc7fc05c2bf28ce5cf9cba02dad4e1f1ea710d5eeea67ad0f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 71,
+      "hasStructuralAnalysis": false
+    },
+    "samples/market.jsonl": {
+      "filePath": "samples/market.jsonl",
+      "contentHash": "9bdb2c20354cff4b559f9cb8e091e86402bfbb1f6f9f9f85d2fb00f5550fca45",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": false
+    },
+    "src/BinanceMonitor/BinanceMonitor.csproj": {
+      "filePath": "src/BinanceMonitor/BinanceMonitor.csproj",
+      "contentHash": "30579e3e5f0cbfaf41b6e64d0c9741b4a8438e1b3bf3a3ad6e7dddb63ef78ed5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": false
+    },
+    "src/BinanceMonitor/MainForm.cs": {
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "contentHash": "120242d8464611e682306db5e447ac68652d597d470caeb19758c0f2dce4222c",
+      "functions": [
+        {
+          "name": "MainForm",
+          "params": [],
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "StartAsync",
+          "params": [
+            "fromFile"
+          ],
+          "returnType": "Task",
+          "exported": false,
+          "lineCount": 50
+        },
+        {
+          "name": "RenderPending",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "OnClosing",
+          "params": [
+            "sender",
+            "e"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [
+        {
+          "name": "MainForm",
+          "methods": [
+            "MainForm",
+            "StartAsync",
+            "RenderPending",
+            "OnClosing"
+          ],
+          "properties": [
+            "symbols",
+            "kind",
+            "connect",
+            "stop",
+            "replay",
+            "status",
+            "quote",
+            "grid",
+            "pending",
+            "timer",
+            "session",
+            "running",
+            "latestStatus",
+            "received",
+            "dropped",
+            "closing"
+          ],
+          "exported": true,
+          "lineCount": 144
+        }
+      ],
+      "imports": [
+        {
+          "source": "System.Collections.Concurrent",
+          "specifiers": [
+            "Concurrent"
+          ]
+        },
+        {
+          "source": "BinanceStream",
+          "specifiers": [
+            "BinanceStream"
+          ]
+        }
+      ],
+      "exports": [
+        "MainForm",
+        "MainForm"
+      ],
+      "totalLines": 150,
+      "hasStructuralAnalysis": true
+    },
+    "src/BinanceMonitor/Program.cs": {
+      "filePath": "src/BinanceMonitor/Program.cs",
+      "contentHash": "516370d24f6a3ba25fcdba15c864de48d59c4341550ab5ff14bad27c04fc0066",
+      "functions": [
+        {
+          "name": "Main",
+          "params": [],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "Program",
+          "methods": [
+            "Main"
+          ],
+          "properties": [],
+          "exported": false,
+          "lineCount": 9
+        }
+      ],
+      "imports": [],
+      "exports": [],
+      "totalLines": 12,
+      "hasStructuralAnalysis": true
+    },
+    "src/BinanceStream/BinanceClient.cs": {
+      "filePath": "src/BinanceStream/BinanceClient.cs",
+      "contentHash": "ef98eeb516fab2a9770e32446dc9473fc1d4cd4b1b8160f8e094cae688814b02",
+      "functions": [
+        {
+          "name": "BinanceClient",
+          "params": [
+            "endpoint"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "StreamAsync",
+          "params": [
+            "subscriptions",
+            "cancellationToken"
+          ],
+          "returnType": "IAsyncEnumerable<MarketEvent>",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "Report",
+          "params": [
+            "status"
+          ],
+          "returnType": "void",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "ReceiveAsync",
+          "params": [
+            "socket",
+            "token"
+          ],
+          "returnType": "Task<string>",
+          "exported": false,
+          "lineCount": 20
+        }
+      ],
+      "classes": [
+        {
+          "name": "BinanceClient",
+          "methods": [
+            "BinanceClient",
+            "StreamAsync",
+            "Report",
+            "ReceiveAsync"
+          ],
+          "properties": [
+            "Endpoint"
+          ],
+          "exported": true,
+          "lineCount": 92
+        }
+      ],
+      "imports": [
+        {
+          "source": "System.Net.WebSockets",
+          "specifiers": [
+            "WebSockets"
+          ]
+        },
+        {
+          "source": "System.Runtime.CompilerServices",
+          "specifiers": [
+            "CompilerServices"
+          ]
+        },
+        {
+          "source": "System.Text",
+          "specifiers": [
+            "Text"
+          ]
+        }
+      ],
+      "exports": [
+        "Endpoint",
+        "BinanceClient",
+        "StreamAsync",
+        "BinanceClient"
+      ],
+      "totalLines": 100,
+      "hasStructuralAnalysis": true
+    },
+    "src/BinanceStream/BinanceStream.csproj": {
+      "filePath": "src/BinanceStream/BinanceStream.csproj",
+      "contentHash": "ed7c0f20902846adddafbfc178137e3a0dd399bba0a8c656195f76855d2233bb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": false
+    },
+    "src/BinanceStream/FileReplay.cs": {
+      "filePath": "src/BinanceStream/FileReplay.cs",
+      "contentHash": "776eb84ab6d220ba4510ab2a6a04ade6eb9c5a38e61c4ad19b6f08d3f6d700ab",
+      "functions": [
+        {
+          "name": "ReadAsync",
+          "params": [
+            "path",
+            "interval",
+            "cancellationToken"
+          ],
+          "returnType": "IAsyncEnumerable<MarketEvent>",
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "classes": [
+        {
+          "name": "FileReplay",
+          "methods": [
+            "ReadAsync"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 16
+        }
+      ],
+      "imports": [
+        {
+          "source": "System.Runtime.CompilerServices",
+          "specifiers": [
+            "CompilerServices"
+          ]
+        }
+      ],
+      "exports": [
+        "ReadAsync",
+        "FileReplay"
+      ],
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "src/BinanceStream/MarketEvent.cs": {
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "contentHash": "35e12060a344f5576676f0938f84ebae21d8dd118968fe1c8b2bc6d70f2d8b71",
+      "functions": [
+        {
+          "name": "Parse",
+          "params": [
+            "json"
+          ],
+          "returnType": "MarketEvent",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "Number",
+          "params": [
+            "root",
+            "name"
+          ],
+          "returnType": "decimal",
+          "exported": false,
+          "lineCount": 2
+        }
+      ],
+      "classes": [
+        {
+          "name": "MarketEvent",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Trade",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "BookTicker",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "UnknownEvent",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "MarketEventParser",
+          "methods": [
+            "Parse",
+            "Number"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 24
+        }
+      ],
+      "imports": [
+        {
+          "source": "System.Globalization",
+          "specifiers": [
+            "Globalization"
+          ]
+        },
+        {
+          "source": "System.Text.Json",
+          "specifiers": [
+            "Json"
+          ]
+        }
+      ],
+      "exports": [
+        "MarketEvent",
+        "Trade",
+        "BookTicker",
+        "UnknownEvent",
+        "Parse",
+        "MarketEventParser"
+      ],
+      "totalLines": 37,
+      "hasStructuralAnalysis": true
+    },
+    "src/BinanceStream/Subscription.cs": {
+      "filePath": "src/BinanceStream/Subscription.cs",
+      "contentHash": "15990ba6f4b0604e46b47fbd6714c0b6e71b18efee2444b54a5304b5db30de05",
+      "functions": [
+        {
+          "name": "Subscription",
+          "params": [
+            "symbol",
+            "kind"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ToString",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "Subscription",
+          "methods": [
+            "Subscription",
+            "ToString"
+          ],
+          "properties": [
+            "Symbol",
+            "Kind"
+          ],
+          "exported": true,
+          "lineCount": 20
+        }
+      ],
+      "imports": [
+        {
+          "source": "System.Text.RegularExpressions",
+          "specifiers": [
+            "RegularExpressions"
+          ]
+        }
+      ],
+      "exports": [
+        "Symbol",
+        "Kind",
+        "Subscription",
+        "ToString",
+        "Subscription"
+      ],
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "tests/BinanceStream.Tests/BinanceStream.Tests.csproj": {
+      "filePath": "tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "contentHash": "b2f79f4a2f55fbdab9e115726f454ab4b5e328547ae94e8eb8ee088d485c4bd1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": false
+    },
+    "tests/BinanceStream.Tests/Program.cs": {
+      "filePath": "tests/BinanceStream.Tests/Program.cs",
+      "contentHash": "285811b5f62d685410023adbf13bbf19db006d6f664513c64d6eb58f99263656",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "System.Globalization",
+          "specifiers": [
+            "Globalization"
+          ]
+        },
+        {
+          "source": "BinanceStream",
+          "specifiers": [
+            "BinanceStream"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

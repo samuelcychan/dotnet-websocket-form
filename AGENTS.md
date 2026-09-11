@@ -36,3 +36,7 @@ This repository is newly initialized and has no established commit history conve
 ## Architecture & Configuration
 
 Each stream enumeration owns its socket. Preserve cancellation, bounded queues, and UI-thread marshaling. Public market data requires no credentials; never commit secrets. Keep generated `bin/` and `obj/` directories out of version control.
+
+## Knowledge Graph Updates
+
+When `.ua/config.json` enables `autoUpdate`, check `.ua/meta.json` against `git rev-parse HEAD` at task start and after creating commits. If stale, follow `~/.understand-anything-plugin/hooks/auto-update-prompt.md` to update the graph incrementally. Preserve the baseline on failure and report it. Do not create extra commits or push generated updates unless requested.

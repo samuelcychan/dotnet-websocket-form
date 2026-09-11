@@ -1,0 +1,4 @@
+intermediate/
+tmp/
+.trash-*/
+diff-overlay.json

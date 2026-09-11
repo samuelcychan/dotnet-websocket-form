@@ -19,6 +19,12 @@ For this workspace, an SDK was installed locally without modifying PATH. You can
 
 Enter comma-separated symbols, select Trade, AggregateTrade, or BookTicker, then Connect. Disconnect before changing subscriptions. Replay sample shows three recorded events without accessing the network. The grid keeps the latest 500 rows; a bounded 1,000-event queue drops the oldest pending display events under heavy load and reports display skips. This demo is not a complete event recorder.
 
+## Live price chart
+
+The monitor charts the selected symbol alongside the event grid. Trade and aggregate-trade prices appear in gold; best bid and ask appear in teal and blue. Use **Chart symbol** to switch between symbols received in the current session. Each symbol retains up to 300 displayed samples (at most 100 symbols), with automatic price scaling. A new connection or replay clears the chart.
+
+Samples are evenly spaced by arrival order, not elapsed time. The labels show local display time because book-ticker messages do not contain exchange timestamps. Replay uses the same chart path; the bundled three-event sample produces sparse points. Chart history shares the bounded display pipeline and may skip events under load; it is not durable storage. The chart uses native WinForms drawing with no additional packages.
+
 ## Library usage
 
 ```csharp

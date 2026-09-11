@@ -1,0 +1,1353 @@
+{
+  "version": "1.0.0",
+  "project": {
+    "name": "dotnet-websocket-form",
+    "languages": [
+      "csharp",
+      "csproj",
+      "json",
+      "jsonl",
+      "markdown",
+      "props",
+      "slnx"
+    ],
+    "frameworks": [
+      ".NET 10",
+      "Windows Forms"
+    ],
+    "description": "A C#/.NET 10 Binance market-data WebSocket client and Windows Forms monitor, independently inspired by binance-client-websocket. It uses built-in ClientWebSocket, System.Text.Json, and async streams without third-party runtime packages.",
+    "analyzedAt": "2026-09-10T23:20:58.856Z",
+    "gitCommitHash": "5969adb7e14233a6fcd9aa5bab5b3a0bd4cfe62c"
+  },
+  "nodes": [
+    {
+      "id": "config:.ua/config.json",
+      "type": "config",
+      "name": "config.json",
+      "filePath": ".ua/config.json",
+      "summary": "Sets the knowledge graph output language to English.",
+      "tags": [
+        "configuration",
+        "analysis",
+        "language"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "filePath": "AGENTS.md",
+      "summary": "Defines repository structure, development commands, coding conventions, regression checks, and contribution guidance.",
+      "tags": [
+        "documentation",
+        "development",
+        "contribution"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:BinanceStream.slnx",
+      "type": "file",
+      "name": "BinanceStream.slnx",
+      "filePath": "BinanceStream.slnx",
+      "summary": "Groups the reusable library, Windows Forms monitor, and executable regression checks into one .NET solution.",
+      "tags": [
+        "build-system",
+        "solution",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:Directory.Build.props",
+      "type": "file",
+      "name": "Directory.Build.props",
+      "filePath": "Directory.Build.props",
+      "summary": "Enables implicit usings, nullable references, and warnings as errors for all projects.",
+      "tags": [
+        "build-system",
+        "configuration",
+        "code-quality"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Explains setup, live streaming, offline replay, resource limits, and intentionally unsupported features.",
+      "tags": [
+        "documentation",
+        "entry-point",
+        "architecture"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:samples/market.jsonl",
+      "type": "file",
+      "name": "market.jsonl",
+      "filePath": "samples/market.jsonl",
+      "summary": "Contains three recorded trade, aggregate-trade, and best-quote messages for offline monitor replay.",
+      "tags": [
+        "sample-data",
+        "replay",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "type": "config",
+      "name": "BinanceMonitor.csproj",
+      "filePath": "src/BinanceMonitor/BinanceMonitor.csproj",
+      "summary": "Builds a Windows Forms executable targeting net10.0-windows, references the library, and copies the replay sample.",
+      "tags": [
+        "configuration",
+        "build-system",
+        "windows-forms"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/BinanceMonitor/MainForm.cs",
+      "type": "file",
+      "name": "MainForm.cs",
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "summary": "Implements connection controls, background live/replay consumption, bounded display buffering, periodic rendering, and asynchronous shutdown.",
+      "tags": [
+        "component",
+        "windows-forms",
+        "market-data",
+        "concurrency"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/BinanceMonitor/Program.cs",
+      "type": "file",
+      "name": "Program.cs",
+      "filePath": "src/BinanceMonitor/Program.cs",
+      "summary": "Initializes Windows Forms and starts the MainForm message loop on an STA thread.",
+      "tags": [
+        "entry-point",
+        "windows-forms",
+        "bootstrap"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/BinanceStream/BinanceClient.cs",
+      "type": "file",
+      "name": "BinanceClient.cs",
+      "filePath": "src/BinanceStream/BinanceClient.cs",
+      "summary": "Owns a WebSocket per enumeration and yields parsed market events with cancellation, reconnect backoff, timeouts, and isolated status callbacks.",
+      "tags": [
+        "service",
+        "websocket",
+        "async-stream",
+        "resilience"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:src/BinanceStream/BinanceStream.csproj",
+      "type": "config",
+      "name": "BinanceStream.csproj",
+      "filePath": "src/BinanceStream/BinanceStream.csproj",
+      "summary": "Builds the reusable net10.0 market-data library without third-party runtime dependencies.",
+      "tags": [
+        "configuration",
+        "build-system",
+        "library"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/BinanceStream/FileReplay.cs",
+      "type": "file",
+      "name": "FileReplay.cs",
+      "filePath": "src/BinanceStream/FileReplay.cs",
+      "summary": "Reads nonblank JSONL records in order, parses market events, and introduces a cancellable fixed replay delay.",
+      "tags": [
+        "replay",
+        "async-stream",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/BinanceStream/MarketEvent.cs",
+      "type": "file",
+      "name": "MarketEvent.cs",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "summary": "Defines immutable market event records and parses raw or combined Binance payloads using invariant decimal conversion.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data",
+        "precision"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/BinanceStream/Subscription.cs",
+      "type": "file",
+      "name": "Subscription.cs",
+      "filePath": "src/BinanceStream/Subscription.cs",
+      "summary": "Defines supported stream kinds and an immutable subscription that validates symbols and preserves case-sensitive stream suffixes.",
+      "tags": [
+        "validation",
+        "data-model",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "type": "config",
+      "name": "BinanceStream.Tests.csproj",
+      "filePath": "tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "summary": "Builds the net10.0 executable regression harness and references the market-data library.",
+      "tags": [
+        "configuration",
+        "build-system",
+        "test"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "file",
+      "name": "Program.cs",
+      "filePath": "tests/BinanceStream.Tests/Program.cs",
+      "summary": "Runs eight offline checks for parsing, decimal precision, subscriptions, replay, and cancellation, with an optional 30-second live smoke test.",
+      "tags": [
+        "test",
+        "entry-point",
+        "regression",
+        "smoke-test"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "class",
+      "name": "MainForm",
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "lineRange": [
+        6,
+        149
+      ],
+      "summary": "Owns the monitor controls, session lifecycle, bounded pending-event queue, and UI timer.",
+      "tags": [
+        "component",
+        "windows-forms",
+        "market-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "function",
+      "name": "MainForm",
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "lineRange": [
+        27,
+        64
+      ],
+      "summary": "Constructs the dark-themed monitor layout and connects buttons, timer, and closing events to handlers.",
+      "tags": [
+        "component",
+        "windows-forms",
+        "market-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "type": "function",
+      "name": "StartAsync",
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "lineRange": [
+        66,
+        115
+      ],
+      "summary": "Validates subscriptions, selects live or replay input, consumes events on a background task, bounds pending events at 1,000, and restores controls after completion.",
+      "tags": [
+        "component",
+        "windows-forms",
+        "market-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/BinanceMonitor/MainForm.cs:RenderPending",
+      "type": "function",
+      "name": "RenderPending",
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "lineRange": [
+        117,
+        136
+      ],
+      "summary": "Renders up to 100 pending events per tick, keeps the latest 500 grid rows, and displays quote and received/drop counters.",
+      "tags": [
+        "component",
+        "windows-forms",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/BinanceMonitor/MainForm.cs:OnClosing",
+      "type": "function",
+      "name": "OnClosing",
+      "filePath": "src/BinanceMonitor/MainForm.cs",
+      "lineRange": [
+        138,
+        148
+      ],
+      "summary": "Cancels the active session and awaits background consumption before disposing the timer and closing the form.",
+      "tags": [
+        "component",
+        "windows-forms",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "class",
+      "name": "BinanceClient",
+      "filePath": "src/BinanceStream/BinanceClient.cs",
+      "lineRange": [
+        8,
+        99
+      ],
+      "summary": "Provides public market-data streaming with per-enumeration socket ownership and connection status notifications.",
+      "tags": [
+        "service",
+        "websocket",
+        "async-stream"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "function",
+      "name": "BinanceClient",
+      "filePath": "src/BinanceStream/BinanceClient.cs",
+      "lineRange": [
+        13,
+        19
+      ],
+      "summary": "Selects the default public Binance endpoint or validates a custom secure WebSocket origin.",
+      "tags": [
+        "service",
+        "websocket",
+        "async-stream"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "type": "function",
+      "name": "StreamAsync",
+      "filePath": "src/BinanceStream/BinanceClient.cs",
+      "lineRange": [
+        21,
+        70
+      ],
+      "summary": "Deduplicates and validates 1–100 subscriptions, connects to the combined stream endpoint, parses messages, and reconnects with capped exponential backoff and jitter.",
+      "tags": [
+        "service",
+        "websocket",
+        "async-stream"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/BinanceStream/BinanceClient.cs:ReceiveAsync",
+      "type": "function",
+      "name": "ReceiveAsync",
+      "filePath": "src/BinanceStream/BinanceClient.cs",
+      "lineRange": [
+        79,
+        98
+      ],
+      "summary": "Assembles fragmented text frames with a two-minute deadline and a 1 MiB limit, rejecting close and non-text messages.",
+      "tags": [
+        "service",
+        "websocket",
+        "async-stream"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/FileReplay.cs:FileReplay",
+      "type": "class",
+      "name": "FileReplay",
+      "filePath": "src/BinanceStream/FileReplay.cs",
+      "lineRange": [
+        5,
+        20
+      ],
+      "summary": "Provides an asynchronous file-based market event source for offline playback.",
+      "tags": [
+        "replay",
+        "async-stream",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/BinanceStream/FileReplay.cs:ReadAsync",
+      "type": "function",
+      "name": "ReadAsync",
+      "filePath": "src/BinanceStream/FileReplay.cs",
+      "lineRange": [
+        8,
+        19
+      ],
+      "summary": "Validates the interval, skips blank lines, parses each JSONL record, and respects cancellation during reading and delay.",
+      "tags": [
+        "replay",
+        "async-stream",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/MarketEvent.cs:MarketEvent",
+      "type": "class",
+      "name": "MarketEvent",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "lineRange": [
+        6,
+        6
+      ],
+      "summary": "Defines the shared immutable market-event base record carrying the trading symbol.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/MarketEvent.cs:Trade",
+      "type": "class",
+      "name": "Trade",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "lineRange": [
+        7,
+        8
+      ],
+      "summary": "Represents an individual or aggregate trade with decimal price and quantity, timestamp, identifier, and maker-side flag.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/MarketEvent.cs:BookTicker",
+      "type": "class",
+      "name": "BookTicker",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "lineRange": [
+        9,
+        10
+      ],
+      "summary": "Represents the best bid and ask prices and quantities together with an update identifier.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/MarketEvent.cs:UnknownEvent",
+      "type": "class",
+      "name": "UnknownEvent",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "lineRange": [
+        11,
+        11
+      ],
+      "summary": "Preserves the symbol and JSON payload of an unrecognized market message.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/MarketEvent.cs:MarketEventParser",
+      "type": "class",
+      "name": "MarketEventParser",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "lineRange": [
+        13,
+        36
+      ],
+      "summary": "Converts Binance raw and combined JSON messages into typed immutable market records.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/BinanceStream/MarketEvent.cs:Parse",
+      "type": "function",
+      "name": "Parse",
+      "filePath": "src/BinanceStream/MarketEvent.cs",
+      "lineRange": [
+        15,
+        32
+      ],
+      "summary": "Unwraps combined payloads, distinguishes trades and best quotes, preserves unknown payloads, and parses numeric strings with invariant decimal precision.",
+      "tags": [
+        "data-model",
+        "serialization",
+        "market-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "class",
+      "name": "Subscription",
+      "filePath": "src/BinanceStream/Subscription.cs",
+      "lineRange": [
+        7,
+        26
+      ],
+      "summary": "Pairs a normalized alphanumeric trading symbol with a supported stream kind using record value equality.",
+      "tags": [
+        "validation",
+        "data-model",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "function",
+      "name": "Subscription",
+      "filePath": "src/BinanceStream/Subscription.cs",
+      "lineRange": [
+        11,
+        19
+      ],
+      "summary": "Rejects null or malformed symbols and invalid stream kinds, then normalizes the symbol to lowercase.",
+      "tags": [
+        "validation",
+        "data-model",
+        "subscription"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/BinanceStream/Subscription.cs:ToString",
+      "type": "function",
+      "name": "ToString",
+      "filePath": "src/BinanceStream/Subscription.cs",
+      "lineRange": [
+        20,
+        25
+      ],
+      "summary": "Formats the subscription as symbol@stream while preserving Binance aggregate-trade suffix capitalization.",
+      "tags": [
+        "validation",
+        "data-model",
+        "subscription"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "function:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "target": "function:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "function:src/BinanceMonitor/MainForm.cs:MainForm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "target": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "function:src/BinanceMonitor/MainForm.cs:RenderPending",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "target": "function:src/BinanceMonitor/MainForm.cs:RenderPending",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "function:src/BinanceMonitor/MainForm.cs:OnClosing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceMonitor/MainForm.cs:MainForm",
+      "target": "function:src/BinanceMonitor/MainForm.cs:OnClosing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "class:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "class:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "function:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "target": "function:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "function:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "target": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "function:src/BinanceStream/BinanceClient.cs:ReceiveAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "target": "function:src/BinanceStream/BinanceClient.cs:ReceiveAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/FileReplay.cs",
+      "target": "class:src/BinanceStream/FileReplay.cs:FileReplay",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/FileReplay.cs",
+      "target": "class:src/BinanceStream/FileReplay.cs:FileReplay",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/FileReplay.cs",
+      "target": "function:src/BinanceStream/FileReplay.cs:ReadAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/FileReplay.cs:FileReplay",
+      "target": "function:src/BinanceStream/FileReplay.cs:ReadAsync",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/FileReplay.cs",
+      "target": "function:src/BinanceStream/FileReplay.cs:ReadAsync",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:Trade",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:Trade",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:BookTicker",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:BookTicker",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:UnknownEvent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:UnknownEvent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEventParser",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEventParser",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "function:src/BinanceStream/MarketEvent.cs:Parse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/MarketEvent.cs:MarketEventParser",
+      "target": "function:src/BinanceStream/MarketEvent.cs:Parse",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "function:src/BinanceStream/MarketEvent.cs:Parse",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "class:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "class:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "function:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/Subscription.cs:Subscription",
+      "target": "function:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "function:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "function:src/BinanceStream/Subscription.cs:ToString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "class:src/BinanceStream/Subscription.cs:Subscription",
+      "target": "function:src/BinanceStream/Subscription.cs:ToString",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "function:src/BinanceStream/Subscription.cs:ToString",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "file:src/BinanceStream/BinanceClient.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "file:src/BinanceStream/FileReplay.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "file:src/BinanceStream/MarketEvent.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "file:src/BinanceStream/Subscription.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceMonitor/Program.cs",
+      "target": "file:src/BinanceMonitor/MainForm.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "file:src/BinanceStream/Subscription.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "file:src/BinanceStream/MarketEvent.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceStream/FileReplay.cs",
+      "target": "file:src/BinanceStream/MarketEvent.cs",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceMonitor/MainForm.cs",
+      "target": "file:samples/market.jsonl",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "target": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "target": "function:src/BinanceStream/BinanceClient.cs:BinanceClient",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "target": "function:src/BinanceStream/FileReplay.cs:ReadAsync",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/BinanceMonitor/MainForm.cs:StartAsync",
+      "target": "function:src/BinanceStream/Subscription.cs:Subscription",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "target": "function:src/BinanceStream/MarketEvent.cs:Parse",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/BinanceStream/BinanceClient.cs:StreamAsync",
+      "target": "function:src/BinanceStream/Subscription.cs:ToString",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:src/BinanceStream/FileReplay.cs:ReadAsync",
+      "target": "function:src/BinanceStream/MarketEvent.cs:Parse",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:src/BinanceStream/MarketEvent.cs:Trade",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEvent",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:src/BinanceStream/MarketEvent.cs:BookTicker",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEvent",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "class:src/BinanceStream/MarketEvent.cs:UnknownEvent",
+      "target": "class:src/BinanceStream/MarketEvent.cs:MarketEvent",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:src/BinanceMonitor/MainForm.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:src/BinanceStream/BinanceClient.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:src/BinanceStream/FileReplay.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "file:src/BinanceMonitor/MainForm.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "file:src/BinanceStream/BinanceClient.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "file:src/BinanceStream/FileReplay.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:AGENTS.md",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:BinanceStream.slnx",
+      "target": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Directory.Build.props",
+      "target": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:BinanceStream.slnx",
+      "target": "config:src/BinanceStream/BinanceStream.csproj",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Directory.Build.props",
+      "target": "config:src/BinanceStream/BinanceStream.csproj",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:BinanceStream.slnx",
+      "target": "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:Directory.Build.props",
+      "target": "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "target": "file:src/BinanceMonitor/MainForm.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "target": "file:src/BinanceMonitor/Program.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceStream/BinanceStream.csproj",
+      "target": "file:src/BinanceStream/BinanceClient.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceStream/BinanceStream.csproj",
+      "target": "file:src/BinanceStream/FileReplay.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceStream/BinanceStream.csproj",
+      "target": "file:src/BinanceStream/MarketEvent.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceStream/BinanceStream.csproj",
+      "target": "file:src/BinanceStream/Subscription.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "configures",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "target": "config:src/BinanceStream/BinanceStream.csproj",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+      "target": "config:src/BinanceStream/BinanceStream.csproj",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "config:src/BinanceMonitor/BinanceMonitor.csproj",
+      "target": "file:samples/market.jsonl",
+      "type": "depends_on",
+      "direction": "forward",
+      "weight": 0.6
+    },
+    {
+      "source": "file:src/BinanceStream/BinanceClient.cs",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5,
+      "description": "Optional --live smoke check receives three market events; not an offline transport lifecycle test."
+    },
+    {
+      "source": "file:src/BinanceStream/FileReplay.cs",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/BinanceStream/MarketEvent.cs",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:src/BinanceStream/Subscription.cs",
+      "target": "file:tests/BinanceStream.Tests/Program.cs",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:desktop-monitor",
+      "name": "Desktop Monitor",
+      "description": "Windows Forms entry point and monitor manage live or replay sessions, bounded event buffering, UI updates, and cancellation during shutdown.",
+      "nodeIds": [
+        "config:src/BinanceMonitor/BinanceMonitor.csproj",
+        "file:src/BinanceMonitor/MainForm.cs",
+        "file:src/BinanceMonitor/Program.cs"
+      ]
+    },
+    {
+      "id": "layer:market-streaming",
+      "name": "Market Streaming Library",
+      "description": "The reusable .NET 10 library validates subscriptions, streams public Binance trades and best quotes with reconnection, parses immutable events, and replays JSONL records.",
+      "nodeIds": [
+        "file:src/BinanceStream/BinanceClient.cs",
+        "config:src/BinanceStream/BinanceStream.csproj",
+        "file:src/BinanceStream/FileReplay.cs",
+        "file:src/BinanceStream/MarketEvent.cs",
+        "file:src/BinanceStream/Subscription.cs"
+      ]
+    },
+    {
+      "id": "layer:validation-samples",
+      "name": "Regression Checks And Samples",
+      "description": "The console harness checks parsing, precision, subscriptions, replay, and cancellation with an optional live smoke test, while recorded market messages support offline monitor playback.",
+      "nodeIds": [
+        "file:samples/market.jsonl",
+        "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj",
+        "file:tests/BinanceStream.Tests/Program.cs"
+      ]
+    },
+    {
+      "id": "layer:project-support",
+      "name": "Project Support",
+      "description": "Solution-wide build settings, usage and contributor documentation, and knowledge-graph language configuration support development of the library and Windows monitor.",
+      "nodeIds": [
+        "config:.ua/config.json",
+        "document:AGENTS.md",
+        "file:BinanceStream.slnx",
+        "file:Directory.Build.props",
+        "document:README.md"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "order": 1,
+      "title": "Start The Desktop Monitor",
+      "description": "Begin at Program.cs, which initializes Windows Forms and starts MainForm on an STA thread. The README explains the purpose: a public Binance market-data monitor backed by an independent .NET 10 streaming library. The monitor project targets Windows and copies the sample recording into its output.",
+      "nodeIds": [
+        "file:src/BinanceMonitor/Program.cs",
+        "document:README.md",
+        "config:src/BinanceMonitor/BinanceMonitor.csproj"
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Choose And Validate Subscriptions",
+      "description": "MainForm turns symbol and stream selections into subscriptions when a session starts. Subscription validates alphanumeric symbols, normalizes their case, and formats the case-sensitive stream suffix for trades, aggregate trades, or best quotes. This boundary rejects invalid requests before the network connection begins.",
+      "nodeIds": [
+        "file:src/BinanceMonitor/MainForm.cs",
+        "file:src/BinanceStream/Subscription.cs"
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Follow The Live Connection",
+      "description": "BinanceClient consumes the validated subscriptions and connects ClientWebSocket to the combined public stream endpoint. Each enumeration owns its socket, assembles bounded text messages, and reconnects with exponential backoff and jitter after connection failures. Cancellation ends the session and releases its connection.",
+      "nodeIds": [
+        "file:src/BinanceStream/BinanceClient.cs"
+      ],
+      "languageLesson": "C# async streams expose IAsyncEnumerable<T>: await foreach processes yielded events incrementally while cancellation can interrupt asynchronous work."
+    },
+    {
+      "order": 4,
+      "title": "Convert Messages Into Events",
+      "description": "The live connection passes complete JSON messages to MarketEventParser. It unwraps combined payloads and creates immutable Trade, BookTicker, or UnknownEvent records, giving downstream consumers one typed event vocabulary. Invariant decimal conversion preserves price and quantity values independently of the machine's locale.",
+      "nodeIds": [
+        "file:src/BinanceStream/MarketEvent.cs"
+      ],
+      "languageLesson": "C# records provide value-oriented immutable models, while decimal is suitable for representing the decimal prices and quantities delivered in these payloads."
+    },
+    {
+      "order": 5,
+      "title": "Render A Bounded View",
+      "description": "Return to MainForm to see how parsed events cross from background consumption to the UI timer. The monitor holds up to 1,000 pending events, renders up to 100 per tick, and retains 500 grid rows; older pending events can be dropped, so this view is not a complete recorder. Closing cancels and awaits the active session before disposing the timer.",
+      "nodeIds": [
+        "file:src/BinanceMonitor/MainForm.cs",
+        "function:src/BinanceMonitor/MainForm.cs:RenderPending",
+        "function:src/BinanceMonitor/MainForm.cs:OnClosing"
+      ]
+    },
+    {
+      "order": 6,
+      "title": "Replay Without The Network",
+      "description": "The same monitor can consume FileReplay instead of the live client. It reads nonblank JSONL records in order, uses the same parser, and inserts a cancellable fixed delay between records. The three sample messages exercise trade, aggregate-trade, and best-quote displays without contacting Binance.",
+      "nodeIds": [
+        "file:src/BinanceStream/FileReplay.cs",
+        "file:samples/market.jsonl"
+      ]
+    },
+    {
+      "order": 7,
+      "title": "Build And Verify Changes",
+      "description": "Finish with the solution and contributor guide to build using dotnet build BinanceStream.slnx -c Release. Run dotnet run --project tests/BinanceStream.Tests -c Release for eight offline checks covering parsing, decimal precision, subscriptions, replay, and cancellation; add -- --live for the optional 30-second connection smoke test. Shared build settings enable nullable references and warnings as errors, while transport failure and UI lifecycle behavior need additional validation beyond these checks.",
+      "nodeIds": [
+        "file:BinanceStream.slnx",
+        "file:Directory.Build.props",
+        "document:AGENTS.md",
+        "file:tests/BinanceStream.Tests/Program.cs",
+        "config:tests/BinanceStream.Tests/BinanceStream.Tests.csproj"
+      ]
+    }
+  ]
+}
