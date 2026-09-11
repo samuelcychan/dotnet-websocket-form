@@ -4,6 +4,8 @@
 
 - `src/BinanceStream/`: reusable `net10.0` library for WebSocket transport, subscriptions, typed market events, parsing, and file replay.
 - `src/BinanceMonitor/`: `net10.0-windows` Windows Forms application. Keep display logic here and protocol logic in the library.
+- `src/Telemetry.Core/`, `Telemetry.Mqtt/`, and `Telemetry.Storage/`: sensor validation/Modbus reads, MQTT lifecycle, and transactional SQLite persistence. `src/ModbusMqttBridge/` is the separate read-only publisher.
+- `infra/hivemq/` contains local Docker Compose configuration; `samples/telemetry/` holds fixtures and the bridge mapping. Operational instructions are in `docs/mqtt-emulator.md`.
 - `tests/BinanceStream.Tests/`: executable regression checks and an optional live smoke test.
 - `samples/market.jsonl`: recorded messages copied into the monitor output for offline replay.
 - `BinanceStream.slnx`: solution entry point. `Directory.Build.props` enables nullable references, implicit usings, and warnings as errors.
@@ -17,6 +19,8 @@ dotnet build BinanceStream.slnx -c Release
 dotnet run --project src/BinanceMonitor -c Release
 dotnet run --project tests/BinanceStream.Tests -c Release
 dotnet run --project tests/BinanceStream.Tests -c Release -- --live
+dotnet run --project tests/Telemetry.Tests -c Release
+dotnet run --project tests/BinanceMonitor.Tests -c Release
 ```
 
 These commands build all projects, launch the monitor, run offline checks, and run checks plus a live Binance connection test, respectively. The live test has a 30-second deadline. If `dotnet` is unavailable on PATH, see the local SDK command in `README.md`.
@@ -28,6 +32,8 @@ Use four-space indentation, file-scoped namespaces, PascalCase for types and pub
 ## Testing Guidelines
 
 Tests use a dependency-free console harness, not xUnit or NUnit; run them with `dotnet run`, not `dotnet test`. Add behavior-focused checks with descriptive labels such as `Replay cancellation`. Cover affected parsing, validation, precision, and lifecycle behavior. Keep offline tests deterministic and network checks optional. No numerical coverage threshold is configured. For UI changes, manually verify connection, disconnection, replay, and closing during an active session.
+
+Telemetry tests use the production MQTT/SQLite packages; broker tests require explicit `--broker HOST PORT`. UI checks briefly open Forms and use temporary databases. Only use the documented broker-restart flag against an isolated development broker. Preserve commit-before-acknowledgement, atomic reading/alert updates, and separation of durable ingestion from bounded display queues.
 
 ## Commit & Pull Request Guidelines
 

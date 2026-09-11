@@ -1,6 +1,6 @@
 # Binance Stream + Windows Forms Monitor
 
-A C#/.NET 10 implementation inspired by [Marfusios/binance-client-websocket](https://github.com/Marfusios/binance-client-websocket). This is an independent implementation, not a fork or a drop-in replacement. It uses the built-in `ClientWebSocket`, `System.Text.Json`, and async streams; no third-party runtime packages are required.
+A C#/.NET 10 implementation inspired by [Marfusios/binance-client-websocket](https://github.com/Marfusios/binance-client-websocket). This is an independent implementation, not a fork or a drop-in replacement. The Binance library uses built-in `ClientWebSocket`, `System.Text.Json`, and async streams. The sensor workspace additionally uses MQTTnet and Microsoft.Data.Sqlite.
 
 ## Run
 
@@ -24,6 +24,12 @@ Enter comma-separated symbols, select Trade, AggregateTrade, or BookTicker, then
 The monitor charts the selected symbol alongside the event grid. Trade and aggregate-trade prices appear in gold; best bid and ask appear in teal and blue. Use **Chart symbol** to switch between symbols received in the current session. Each symbol retains up to 300 displayed samples (at most 100 symbols), with automatic price scaling. A new connection or replay clears the chart.
 
 Samples are evenly spaced by arrival order, not elapsed time. The labels show local display time because book-ticker messages do not contain exchange timestamps. Replay uses the same chart path; the bundled three-event sample produces sparse points. Chart history shares the bounded display pipeline and may skip events under load; it is not durable storage. The chart uses native WinForms drawing with no additional packages.
+
+## MQTT sensors and Modbus
+
+Click **MQTT sensors** to open the sensor workspace after stopping any Binance connection. It provides a live chart, SQLite logging, threshold rules, history filters, CSV export, backup, and manual retention. **Replay pressure** works offline.
+
+The live pipeline is Modbus Simulator slave → separate Modbus-to-MQTT bridge → HiveMQ Docker → sensor workspace. The bridge currently supports one unsigned 16-bit holding register per instance. See [setup and operation](docs/mqtt-emulator.md) for commands, the register map, delivery limits, and tests; [PLAN.md](PLAN.md) tracks remaining acceptance work.
 
 ## Library usage
 

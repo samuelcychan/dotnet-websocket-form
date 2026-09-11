@@ -6,6 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../BinanceStream/BinanceStream.csproj" />
+    <ProjectReference Include="../Telemetry.Mqtt/Telemetry.Mqtt.csproj" />
+    <ProjectReference Include="../Telemetry.Storage/Telemetry.Storage.csproj" />
+    <None Include="../../samples/telemetry/pressure.jsonl" Link="samples/telemetry/pressure.jsonl" CopyToOutputDirectory="PreserveNewest" />
     <None Include="../../samples/market.jsonl" Link="samples/market.jsonl" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

@@ -2,3 +2,8 @@
 **/obj/
 .vs/
 *.user
+infra/hivemq/.env
+*.db
+*.db-wal
+*.db-shm
+*.partial

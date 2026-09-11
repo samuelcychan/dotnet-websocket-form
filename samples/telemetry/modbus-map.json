@@ -1,0 +1,18 @@
+{
+  "modbusHost": "127.0.0.1",
+  "modbusPort": 502,
+  "unitId": 1,
+  "address": 0,
+  "scale": 0.1,
+  "offset": 0,
+  "pollIntervalMs": 1000,
+  "timeoutMs": 2000,
+  "deviceId": "sensor-01",
+  "metric": "pressure",
+  "unit": "hPa",
+  "mqttHost": "127.0.0.1",
+  "mqttPort": 1883,
+  "topic": "emulator/sensor-01/telemetry",
+  "clientId": "modbus-pressure-bridge",
+  "tls": false
+}

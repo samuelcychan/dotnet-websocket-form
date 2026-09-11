@@ -10,6 +10,7 @@ public sealed class MainForm : Form
     private readonly Button connect = new() { Text = "Connect", AutoSize = true };
     private readonly Button stop = new() { Text = "Disconnect", AutoSize = true, Enabled = false };
     private readonly Button replay = new() { Text = "Replay sample", AutoSize = true };
+    private readonly Button sensors = new() { Text = "MQTT sensors", AutoSize = true };
     private readonly ComboBox chartSymbol = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 160, AccessibleName = "Chart symbol" };
     private readonly MarketChart chart = new() { Dock = DockStyle.Fill };
     private readonly Label status = new() { Text = "Ready · Public market data · No API key required", Dock = DockStyle.Fill, AutoSize = true };
@@ -45,7 +46,7 @@ public sealed class MainForm : Form
         layout.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
         layout.Controls.Add(new Label { Text = "MARKET / LIVE STREAM", Font = new Font("Segoe UI", 22, FontStyle.Bold), AutoSize = true }, 0, 0);
         var controls = new FlowLayoutPanel { Dock = DockStyle.Fill };
-        controls.Controls.AddRange([symbols, kind, connect, stop, replay]);
+        controls.Controls.AddRange([symbols, kind, connect, stop, replay, sensors]);
         foreach (var button in new[] { connect, stop, replay }) { button.BackColor = Color.FromArgb(240, 185, 11); button.ForeColor = Color.Black; button.FlatStyle = FlatStyle.Flat; }
         layout.Controls.Add(controls, 0, 1);
         layout.Controls.Add(quote, 0, 2);
@@ -67,6 +68,14 @@ public sealed class MainForm : Form
         connect.Click += async (_, _) => await StartAsync(false);
         replay.Click += async (_, _) => await StartAsync(true);
         stop.Click += (_, _) => session?.Cancel();
+        sensors.Click += async (_, _) =>
+        {
+            sensors.Enabled = false;
+            session?.Cancel();
+            if (running is not null) await running;
+            if (!closing) { using var form = new Views.SensorForm(); form.ShowDialog(this); }
+            sensors.Enabled = true;
+        };
         chartSymbol.SelectedIndexChanged += (_, _) => chart.SelectedSymbol = chartSymbol.SelectedItem as string;
         timer.Tick += (_, _) => RenderPending();
         timer.Start();

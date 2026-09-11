@@ -2,8 +2,14 @@
   <Folder Name="/src/">
     <Project Path="src/BinanceMonitor/BinanceMonitor.csproj" />
     <Project Path="src/BinanceStream/BinanceStream.csproj" />
+    <Project Path="src/Telemetry.Core/Telemetry.Core.csproj" />
+    <Project Path="src/Telemetry.Mqtt/Telemetry.Mqtt.csproj" />
+    <Project Path="src/Telemetry.Storage/Telemetry.Storage.csproj" />
+    <Project Path="src/ModbusMqttBridge/ModbusMqttBridge.csproj" />
   </Folder>
   <Folder Name="/tests/">
     <Project Path="tests/BinanceStream.Tests/BinanceStream.Tests.csproj" />
+    <Project Path="tests/Telemetry.Tests/Telemetry.Tests.csproj" />
+    <Project Path="tests/BinanceMonitor.Tests/BinanceMonitor.Tests.csproj" />
   </Folder>
 </Solution>

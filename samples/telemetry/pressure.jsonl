@@ -1,0 +1,6 @@
+{"schemaVersion":1,"deviceId":"sensor-01","messageId":"fixture-1","timestamp":"2026-09-11T08:00:00Z","metric":"pressure","value":1013.2,"unit":"hPa"}
+{"schemaVersion":1,"deviceId":"sensor-01","messageId":"fixture-2","timestamp":"2026-09-11T08:00:01Z","metric":"pressure","value":1004.5,"unit":"hPa"}
+{"schemaVersion":1,"deviceId":"sensor-01","messageId":"fixture-3","timestamp":"2026-09-11T08:00:02Z","metric":"pressure","value":950,"unit":"hPa"}
+{"schemaVersion":1,"deviceId":"sensor-01","messageId":"fixture-4","timestamp":"2026-09-11T08:00:03Z","metric":"pressure","value":1013.2,"unit":"hPa"}
+{"schemaVersion":1,"deviceId":"sensor-01","messageId":"fixture-5","timestamp":"2026-09-11T08:00:04Z","metric":"pressure","value":1050,"unit":"hPa"}
+{"schemaVersion":1,"deviceId":"sensor-01","messageId":"fixture-6","timestamp":"2026-09-11T08:00:05Z","metric":"pressure","value":1013.2,"unit":"hPa"}
