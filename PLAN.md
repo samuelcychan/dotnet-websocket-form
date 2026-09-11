@@ -150,7 +150,7 @@ Requested before MQTT implementation: add a bounded native WinForms price chart 
 
 - Implementation: `src/BinanceMonitor/MarketChart.cs`, integrated into `MainForm.cs`.
 - Limits: 300 displayed samples per symbol, 100 symbols; local display timestamps and evenly spaced points; no durable logging.
-- Validation (2026-09-11): all eight pre-existing offline checks passed using the existing test binary. Fresh solution build and direct UI smoke compilation stalled without diagnostics and were stopped; new-chart compilation and visual/lifecycle verification remain outstanding. Do not treat this preliminary step as fully validated until those checks pass.
+- Validation (2026-09-11): after marking the runtime-only `SelectedSymbol` property as hidden from designer serialization, a fresh Release solution build passed with zero warnings/errors and all eight offline checks passed against the rebuilt test binary. Visual/lifecycle verification remains outstanding; the earlier UI smoke compilation was stopped after stalling.
 
 Statuses: **Ready** = can start without the emulator; **Pending** = depends on earlier phases; **External** = awaits actual emulator; **Deferred** = outside initial delivery. Owner and PR/commit remain unassigned until implementation begins.
 

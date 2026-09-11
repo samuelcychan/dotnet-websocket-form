@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using BinanceStream;
 
@@ -20,6 +21,8 @@ public sealed class MarketChart : Control
         AccessibleName = "Market price chart";
     }
 
+    [Browsable(false)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
     public string? SelectedSymbol
     {
         get => selectedSymbol;
